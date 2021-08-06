@@ -1,0 +1,11 @@
+
+##fix for fake errors in logs of embedded zookeeper: https://github.com/code-not-found/spring-kafka/issues/2
+logging.level.org.apache.zookeeper.server.ZooKeeperServer: OFF
+
+spring:
+  liquibase:
+    enabled: true
+  jpa:
+    show-sql: on
+  datasource:
+    url: 'jdbc:tc:postgresql:11.6:///kofu-example'

@@ -1,0 +1,47 @@
+spring.application.name: kofu-example
+
+kafka:
+  application.id: kofu-example-group-id
+  enabled: true
+  streams:
+    enabled: false
+
+management:
+  endpoint.env.enabled: true
+  endpoints.web.exposure.include: "health,info,env,loggers"
+
+spring:
+  groovy:
+    template:
+      check-template-location: false
+  jpa:
+    open-in-view: false
+  datasource:
+    hikari:
+      minimumIdle: 5
+      maximumPoolSize: 10
+      idleTimeout: 30000
+      maxLifetime: 180000
+      connectionTimeout: 30000
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    enabled: false
+
+# required to register beans in kotlin functional way.
+# see also https://stackoverflow.com/questions/45935931/how-to-use-functional-bean-definition-kotlin-dsl-with-spring-boot-and-spring-w/46033685#46033685
+context:
+  initializer:
+    classes: com.vattenfall.emobility.BeansInitializer
+
+logging:
+  level: "info"
+  level.org.apache:
+    kafka: "warn" #we don't need kafka to be too chatty - produces way too much logs
+    kafka.streams.StreamsConfig: "warn"
+    kafka.clients:
+      consumer.ConsumerConfig: "warn"
+      producer.ProducerConfig: "warn"
+      admin.AdminClientConfig: "warn"
+  level.org.springframework:
+    web: "debug" #change this if you need more info on what's up with web
+  level.reactor.netty.http.client: "debug"
