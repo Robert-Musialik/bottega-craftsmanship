@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '2.4.3'
+	id 'org.springframework.boot' version '2.5.3'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 	id 'groovy'
@@ -23,8 +23,8 @@ repositories {
 }
 
 ext {
-	set("spockVersion", "2.0-M4-groovy-3.0")
-	set('testcontainersVersion', "1.15.2")
+	set("spockVersion", "2.0-groovy-3.0")
+	set('testcontainersVersion', "1.15.3")
 }
 
 
@@ -37,7 +37,7 @@ dependencies {
 
 	//Reactive tools
 	implementation("io.projectreactor:reactor-tools")
-	implementation("io.projectreactor.tools:blockhound:1.0.4.RELEASE")
+	implementation("io.projectreactor.tools:blockhound:1.0.6.RELEASE")
 
 	compileOnly 'org.projectlombok:lombok'
 
