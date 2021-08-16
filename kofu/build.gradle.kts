@@ -4,13 +4,13 @@ import org.jetbrains.kotlin.resolve.calls.model.ResolvedCallArgument.DefaultArgu
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
-    id("org.springframework.boot") version "2.4.3"
+    id("org.springframework.boot") version "2.5.3"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("groovy")
     id("org.liquibase.gradle") version "2.0.4"
-    kotlin("jvm") version "1.4.30"
-    kotlin("plugin.jpa") version "1.4.30"
-    kotlin("plugin.spring") version "1.4.30"
+    kotlin("jvm") version "1.5.21"
+    kotlin("plugin.jpa") version "1.5.21"
+    kotlin("plugin.spring") version "1.5.21"
 }
 
 group = "com.vattenfall.emobility"
@@ -28,8 +28,8 @@ configurations {
 }
 
 project.ext {
-    set("spockVersion", "2.0-M4-groovy-3.0")
-    set("testContainersVersion", "1.15.2")
+    set("spockVersion", "2.0-groovy-3.0")
+    set("testContainersVersion", "1.15.3")
 }
 
 repositories {
