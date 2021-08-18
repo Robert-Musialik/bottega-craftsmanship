@@ -1,0 +1,63 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.6.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+	id 'groovy'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'eu.solidcraft'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/snapshot' }
+	maven { url 'https://repo.spring.io/milestone' }
+}
+
+ext {
+	spockVersion = '2.0-M2-groovy-2.5'
+}
+
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.springframework.boot:spring-boot-starter-rsocket'
+	implementation 'io.projectreactor:reactor-core'
+	implementation 'io.projectreactor:reactor-tools'
+	implementation 'io.projectreactor.tools:blockhound:1.0.2.RELEASE'
+
+	compileOnly 'org.projectlombok:lombok'
+	implementation 'org.codehaus.groovy:groovy'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+		exclude group: 'junit', module: 'junit'
+	}
+	testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+	implementation 'io.projectreactor:reactor-test' //not testImplementation due to tests from pivotal
+	testImplementation('org.spockframework:spock-core:' + spockVersion)
+	testImplementation('org.spockframework:spock-spring:' + spockVersion)
+	testImplementation 'org.springframework.security:spring-security-test'
+
+	//for Pivotal examples
+	implementation 'io.reactivex.rxjava2:rxjava:2.0.8'
+	implementation 'org.assertj:assertj-core:3.12.2'
+
+}
+
+test {
+	useJUnitPlatform()
+}
